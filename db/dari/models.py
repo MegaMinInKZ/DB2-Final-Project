@@ -58,3 +58,5 @@ class Feedback(models.Model):
     day = models.DateField()
     purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
 
+
+
