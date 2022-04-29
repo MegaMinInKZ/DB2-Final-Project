@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+a {
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+input, button {
+    outline: none;
+    border: none;
+
+}
+
+.blue {
+    color: #07b5e4;
+}
+.dark-blue {
+    color: #0e67a2;
+}
+.header {
+    border: 1px solid #e3eff8;
+}
+.wrapper-header {
+    width: 100%;
+    max-width: 1400px;
+    margin: 20px auto 20px;
+
+    font-family: 'Ubuntu', sans-serif;
+}
+.block-header {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+}
+.header-first {
+    display: flex;
+    align-items: center;
+}
+.header-search {
+    width: 500px;
+    height: 36px;
+
+    margin-left: 15px;
+    position: relative;
+}
+.search-input {
+    width: 500px;
+    height: 36px;
+
+    background-color: #edf4f6;
+    border-radius: 5px;
+
+    padding-left: 19px;
+    transition: background-color linear .5s;
+    transition: border linear .3s;
+
+}
+.search-input::placeholder {
+    font-family: 'Ubuntu';
+}
+.search-input:focus {
+    border: 1px solid #addce6;
+    background-color: white;
+}
+.search-btn {
+    height: 36px;
+    width: 41px;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #f4ac34;
+
+    transition: background-color linear  .3s;
+}
+.search-btn:hover {
+    background-color: #d98a02;
+}
+.header-logo {
+    display: flex;
+    align-items: center;
+
+    margin-right: 30px;
+}
+.logo-text {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: -6px;
+    margin-bottom: -2px;
+
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.search-logo {
+}
+.header-second {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.header-second a {
+    color: #184363;
+    font-weight: 500;
+    font-size: 16px;
+}
+.sign-in {
+    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.sign-in__logo {
+}
+.basket {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+.basket__logo {
+}

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
+import cx_Oracle
 
 
 
@@ -9,9 +10,14 @@ from django.urls import reverse
 
 # Create your models here.
 class Category(models.Model):
+    slug = models.SlugField(max_length=255)
+    image = models.ImageField(upload_to='category/')
     name = models.CharField(max_length=255)
     class Meta:
         verbose_name_plural = 'Categories'
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'slug': self.slug})
 class Product(models.Model):
     title = models.CharField(max_length=255)
     upload_date = models.DateField(auto_now_add=True)
@@ -23,6 +29,11 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product', kwargs={'pk': self.pk})
+
+    def get_rating(self):
+        return cx_Oracle.connect('DB', 'db').cursor().callfunc("amount_rating_product", int, [self.pk])
+    def get_rating_count(self):
+        return cx_Oracle
 
 class Rating(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

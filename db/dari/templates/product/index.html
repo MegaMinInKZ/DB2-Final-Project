@@ -1,0 +1,104 @@
+{% extends 'product/base.html' %}
+{% load static %}
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="wrapper-welcome">
+        <div class="wrap-welcome _container">
+            <div class="block-welcome">
+                <div class="welcome-first">
+                    <div class="welcome-title">Ваша надежная онлайн-аптека.</div>
+                    <div class="welcome-subtitle">Безопасный и простой способ купить более 632 лекарств онлайн без посещения врача-терапевта и аптеки терапевта или аптеку</div>
+                    <div class="welcome-search">
+                        <form class="welcome-form" method="post">
+                            <input class="welcome-input" placeholder="Поиск состояние или лечения..." type="text" required/>
+                            <button class="welcome-btn" type="submit">
+                                <img width="18px" height="18px" src="{% static 'design/search.svg' %}" alt="" class="welcome-logo">
+                            </button>
+                        </form>
+                    </div>
+                    <div class="welcome-info">
+                        <div class="welcome-treatments p24">
+                            <div class="treatments-count">
+                                <img src="{% static 'design/drug.svg' %}" alt="">
+                                <span class="count">12.4k</span>
+                            </div>
+                            <p class="additional">Оказанные услуги</p>
+                        </div>
+                        <div class="welcome-users p24">
+                            <div class="users-count">
+                                <img src="{% static 'design/avatar.svg' %}" alt="">
+                                <span class="count">1 000</span>
+                            </div>
+                            <p class="additional">Зарегистрированные пользователи</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="welcome-picture">
+                    <img width="536px" height="357px" class="welcome-image" src="{% static 'design/welcome.svg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrapper-treatments">
+        <div class="wrap-treatments _container">
+            <div class="block-treatments">
+                <div class="treatments-title">Популярные процедуры</div>
+                <div class="treatments-subtitle">
+                    Мы постоянно расширяем список процедур, которые мы можем предоставить<br> онлайн, чтобы у нас всегда было подходящее лечение для вас.
+                </div>
+
+                <div class="wrapper-grid-treatments grid">
+                    {% for category in categories %}
+                        <div class="wrap-grid-item">
+                            <a href="" class="grid__item">{{ category.name }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrapper-treatments">
+        <div class="wrap-treatments _container">
+            <div class="block-treatments">
+                <div class="treatments-title">Популярные товары</div>
+                <div class="treatments-subtitle">
+                    Компонент выводит список самых продаваемых товаров, который формируется с учетом <br>статусов заказов. Компонент стандартный и входит в дистрибутив модуля.
+                </div>
+
+                <div class="wrapper-grid-treatments grid">
+                    {% for product in top_rating %}
+                        <a class="product-link wrap-grid-item" href="">
+                            <div class="product__picture">
+                                <img width="100px" height="100px" src="{{product.Image}}" alt="abidec">
+                            </div>
+                            <div class="card-product-text">
+                                <div class="product__title">{{product.title}}</div>
+                                <div class="product__price">{{product.price}}&#8376;</div>
+
+                                <div class="product_review">
+                                    <div class="stars">
+
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                    </div>
+                                    <p class="review-text">({{product.get_rating_count}} reviews)</p>
+
+                                </div>
+                            </div>
+                            <div class="product__btn">
+                                View details
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

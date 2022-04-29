@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+body {
+    font-family: 'Ubuntu';
+}
+
+
+/* =================== WELCOME PAGE */
+
+.p24 {
+    padding: 24px;
+}
+.wrapper-welcome {
+}
+
+._container {
+    width: 1200px;
+
+}
+
+.wrap-welcome {
+    margin: 150px auto;
+
+
+}
+.block-welcome {
+    display: flex;
+
+    align-items: center;
+}
+.welcome-first {
+    width: 700px;
+}
+.welcome-title {
+    color: rgb(24, 67, 99);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 32px;
+    
+}
+.welcome-subtitle {
+    font-weight: 500;
+    font-size: 18px;
+    color: rgb(23, 43, 58);
+    line-height: 28px;
+
+    margin-top: 12px;
+    margin-bottom: 30px;
+    
+}
+.welcome-search {
+    width: 640px;
+    height: 50px;
+    position: relative;
+
+    margin: 10px 0 10px;
+}
+.welcome-form {
+}
+.welcome-input {
+    width: 640px;
+    height: 50px;
+
+    background-color: #edf4f6;
+    border-radius: 5px;
+
+    padding-left: 19px;
+    transition: background-color linear .5s;
+    transition: border linear .3s;
+}
+.welcome-input::placeholder {
+    font-family: 'Ubuntu';
+}
+.welcome-input:focus {
+    border: 1px solid #addce6;
+    background-color: white;
+}
+.welcome-btn {
+    height: 34px;
+    width: 34px;
+
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+
+    border-radius: 5px;
+    background-color: #f4ac34;
+
+    transition: background-color linear  .3s;
+}
+.welcome-btn:hover {
+    background-color: #d98a02;   
+}
+.welcome-logo {
+}
+.count {
+    color: rgb(23, 43, 58);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 32px;
+    
+    margin-left: 7px;
+}
+.additional {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(86, 119, 143);
+    line-height: 22px;
+
+    margin-top: 4px ;
+}
+.welcome-info {
+    display: flex;
+}
+.welcome-treatments {
+    margin-left: 0;
+    padding-left: 0;
+}
+.treatments-count {
+}
+.welcome-users {
+}
+.users-count {
+}
+.welcome-picture {
+    position: relative;
+    
+}
+.welcome-image {
+
+}
+.background-image {
+    position: absolute;
+}
+
+
+
+/* ================== Treatments  */
+
+
+
+.wrapper-treatments {
+    background-color: #f8fafb;
+    padding-top: 70px;
+    padding-bottom: 120px;
+}
+.wrap-treatments {
+    margin: 0 auto;
+}
+
+.block-treatments {
+}
+.treatments-title {
+    font-weight: 700;
+    font-size: 25px;
+    color: rgb(24, 67, 99);
+    line-height: 35px;    
+}
+.treatments-subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(23, 43, 58);
+    line-height: 25px;
+
+    margin-top: 16px;    
+}
+.wrapper-grid-treatments {
+    margin-top: 32px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 370px 370px 370px;
+    gap: 24px;
+}
+.wrap-grid-item {
+    background-color: white;
+    box-shadow: rgba(24, 67, 99, 0.1) 0px 8px 16px 0px, rgba(24, 67, 99, 0.1) 0px 1px 2px 0px;
+
+    border-radius: 7px;
+    transition: box-shadow linear .3s;
+}
+.wrap-grid-item:hover {
+    box-shadow: rgba(0, 0, 0, 0.32) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.grid__item {
+    display: block;
+    height: 60px;
+    padding: 15px 18px;
+
+    font-weight: 500;
+    font-size: 18px;
+    color: rgb(23, 43, 58);
+    line-height: 28px;
+    
+}
+
+
+
+/* ===================== TOP 10 */
+
+.product-link {
+    display: block !important;
+    height: 360px;
+    padding: 20px 15px 15px;
+
+    position: relative;
+}
+
+.card-product-text {
+    margin-left: 10px;
+    margin-top: 20px;
+    height: 140px;
+    position: relative;
+}
+.product__picture {
+    text-align: center;
+}
+.product__title {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(23, 43, 58);
+    line-height: 25px;
+    
+    margin-top: 12px;
+}
+.product__price {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(57, 203, 116);   
+    line-height: 25px;
+
+}
+.product_review {
+    display: flex;
+    gap: 10px;
+    margin-top: 35px;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0;
+}
+.review-text {
+    color: rgb(155, 155, 155);
+    font-size: 14px;
+
+}
+.product__btn {
+    position: absolute;
+    bottom: 20px;
+    
+
+    background: linear-gradient(-45deg, rgb(245, 184, 64), rgb(242, 151, 31));
+
+    color:  #184363;
+    width: 340px;
+    height: 52px;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    font-size: 14px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

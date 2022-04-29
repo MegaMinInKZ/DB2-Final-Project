@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% block scripts%}
+    {% endblock %}
+</head>
+<body>
+    <div class="header">
+
+        <div class="wrapper-header">
+            <div class="block-header">
+
+                <div class="header-first">
+                    <a class="header-logo" href="">
+                        <img width="36px" height="36px" src="{% static 'design/logo.svg' %}" alt="">
+                        <div class="logo-text">
+                            <span class="dark-blue">The DARI</span>
+                            <span class="blue">PHARMACY</span>
+                        </div>
+                    </a>
+
+                    <div class="header-search">
+                        <form class="search-form" method="post">
+                            <input class="search-input" placeholder="Search for a condition or treatment..." type="text" required/>
+                            <button class="search-btn" type="submit">
+                                <img width="18px" height="18px" src="{% static 'design/search.svg' %}" alt="" class="search-logo">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="header-second">
+                    <a class="sign-in" href="">
+                        <span>Sign in</span>
+                        <img src="{% static 'design/avatar-dark-blue.svg' %}" alt="" class="sign-in__logo">
+                    </a>
+
+                    <a class="basket" href="">
+                        <span>Basket</span>
+                        <img src="{% static 'design/cart.svg' %}" alt="" class="basket__logo">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <footer class="footer">
+        <div class="wrap-footer">
+            <div class="block-footer">
+                <div class="flex">
+                    <div class="logo footer-item">
+                        <a class="footer-logo" href="">
+                            <img width="48px" height="48px" src="{% static 'design/logo-white.svg' %}" alt="logo">
+                            <div class="footer-logo-text">
+                                <span>The DARI</span>
+                                <span>PHARMACY</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="footer-item">
+                        <h5>Email</h5>
+                        <p>support@dari.pharmacy</p>
+                    </div>
+                    <div class="footer-item">
+                        <h5>Telephone</h5>
+                        <p>+7(727) 500 55 55</p>
+                    </div>
+                    <div class="footer-item">
+                        <h5>Opening Times</h5>
+                        <p>Monday - Friday 08:30 - 17:00</p>
+                    </div>
+                </div>
+                <div class="about-text">
+                    The DARI Pharmacy is an online pharmacy and online doctor service is owned and operated by ABSM Healthcare Ltd (Company Reg. 08515600) and Red Label Medical Ltd (Company Reg. 08676338). All information that appears on this website is intended for information purposes only and should be used to supplement, not replace, your relationship with your local healthcare professionals. You should consult your doctor if you think you may have a health problem or before you start taking a new medicine. Please ensure you always read the information leaflets supplied with any medicinal products.For more information see our policies and terms and conditions at the bottom of every page. © 2022 ABSM Healthcare Ltd. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
