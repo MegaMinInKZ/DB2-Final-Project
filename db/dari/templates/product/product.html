@@ -1,14 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {{product}}
-    {% for price in price_history %}
-        <div>{{price}}</div>
-    {% endfor %}
-    <div>{{rating}}</div>
-</body>
-</html>
+{% extends 'product/base.html' %}
+{% load static %}
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+{% block content %}
+    <section>
+        <div class="wrapper-product">
+            <div class="wrap-product">
+                <div class="block-product">
+                    <img width="292px" height="292px" src="{{product.Image}}" alt="abidec">
+                    <div class="product-box">
+
+                        <div class="product-desciption">
+                            <div class="product-title">Acetazolamide 250mg Tablets</div>
+                            <div class="flex relative">
+
+                                <div class="product-review mt17">
+                                    <div class="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                    </div>
+                                    <span>(12 reviews)</span>
+                                </div>
+
+                                <div class="product-price">1240&#8376;</div>
+                            </div>
+
+                        </div>
+                        <div class="wrapper-buttons mt15">
+
+                            <div class="wrap-buy">
+                                <div class="wrap-amount">
+                                    <span class="amount_text">Amount:</span>
+                                    <span class="amount_text-number">34</span>
+                                </div>
+                                <a href="" class="add_basket text-style">
+                                    Add to Basket
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

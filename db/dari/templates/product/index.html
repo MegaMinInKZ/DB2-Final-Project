@@ -71,7 +71,7 @@
 
                 <div class="wrapper-grid-treatments grid">
                     {% for product in top_rating %}
-                        <a class="product-link wrap-grid-item" href="">
+                        <a class="product-link wrap-grid-item" href="{{product.get_absolute_url}}">
                             <div class="product__picture">
                                 <img width="100px" height="100px" src="{{product.Image}}" alt="abidec">
                             </div>

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+.flex {
+    display: flex;
+    align-items: flex-end;
+}
+.mt17 {
+    margin-top: 17px;
+}
+.mt15 {
+    margin-top: 17px;
+}
+.relative {
+    position: relative;;
+}
+.wrapper-product {
+    background-color: #f8fafb;
+    height: 660px;
+
+    padding-top: 130px;
+    font-family: 'Ubuntu';
+}
+.wrap-product {
+    width: 950px;
+    margin: 0 auto;
+
+}
+.block-product {
+    display: flex;
+    justify-content: space-around;
+}
+.product-box {
+
+}
+.product-desciption {
+}
+.product-title {
+    font-weight: 700;
+    font-size: 32px;
+    color: rgb(24, 67, 99);
+    line-height: 38px;
+    text-transform: capitalize;
+}
+.product-review {
+    display: flex;
+}
+.product-review span {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(86, 119, 143);
+    line-height: 23px;
+
+    display: inline-block;
+    margin-bottom: -4px;
+    margin-left: 10px;
+}
+.star {
+}
+.product-price {
+    position: absolute;
+    right: 0;
+
+    font-weight: 500;
+    font-size: 23px;
+    color: rgb(57, 203, 116);
+    line-height: 23px;
+
+}
+.wrapper-buttons {
+
+}
+.wrap-amount {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+    margin-bottom: 19px;
+    border-bottom: 1px solid #abd4f3;
+}
+.amount_text {
+    font-weight: 700;
+    font-size: 16px;
+    color: rgb(23, 43, 58);
+    line-height: 22px;
+}
+.amount_text-number {
+   font-weight: 400;
+   font-size: 14px;
+   color: rgb(23, 43, 58);
+   line-height: 22px;
+}
+.wrap-buy {
+    padding: 24px 18px;
+    background-color: white;
+
+    border-radius: 7px;
+            box-shadow: 0 0.5rem 1rem 0 rgb(24 67 99 / 10%), 0 1px 2px 0 rgb(24 67 99 / 10%);
+
+}
+
+.add_basket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(-45deg,#f5b840,#f2971f);;
+    width: 525px;
+    height: 70px;
+    padding: 24px;
+    box-sizing: border-box;
+
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 4px;
+    transition: all linear .2s;
+}
+.add_basket:hover {
+    transform: scale(1.02);
+}
+.text-style {
+    font-weight: 700;
+    font-size: 13px;
+    color: rgb(24, 67, 99);
+    line-height: 20px;
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
