@@ -29,11 +29,10 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product', kwargs={'pk': self.pk})
-
     def get_rating(self):
         return cx_Oracle.connect('DB', 'db').cursor().callfunc("amount_rating_product", int, [self.pk])
     def get_rating_count(self):
-        return cx_Oracle
+        return cx_Oracle.connect('DB', 'db').cursor().callfunc("amount_rating_product", int, [self.pk])
 
 class Rating(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

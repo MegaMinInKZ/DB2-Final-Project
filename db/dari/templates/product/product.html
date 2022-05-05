@@ -1,18 +1,19 @@
 {% extends 'product/base.html' %}
 {% load static %}
 {% block scripts %}
-    <link type="text/css" rel="stylesheet" href="{% static 'css/product.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/_product-page.css' %}">
+    <script src="{% static 'js/_product-page.js' %}" defer></script>
 {% endblock %}
 {% block content %}
     <section>
         <div class="wrapper-product">
             <div class="wrap-product">
                 <div class="block-product">
-                    <img width="292px" height="292px" src="{{product.Image}}" alt="abidec">
+                    <img width="292px" height="292px" src="{{product.Image}}" alt="{{product.title}}">
                     <div class="product-box">
 
                         <div class="product-desciption">
-                            <div class="product-title">Acetazolamide 250mg Tablets</div>
+                            <div class="product-title">{{product.title}}</div>
                             <div class="flex relative">
 
                                 <div class="product-review mt17">
@@ -23,16 +24,20 @@
                                         <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
                                         <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
                                     </div>
-                                    <span>(12 reviews)</span>
+                                    <span>({{product.get_rating_count}} reviews)</span>
                                 </div>
 
-                                <div class="product-price">1240&#8376;</div>
+                                <div class="product-price">{{product.price}}&#8376;</div>
                             </div>
 
                         </div>
                         <div class="wrapper-buttons mt15">
 
                             <div class="wrap-buy">
+
+
+                                <!-- IF PRODUCT EXISTS -->
+                                {% if product.amount > 0 %}
                                 <div class="wrap-amount">
                                     <span class="amount_text">Amount:</span>
                                     <span class="amount_text-number">34</span>
@@ -40,11 +45,101 @@
                                 <a href="" class="add_basket text-style">
                                     Add to Basket
                                 </a>
+                                {% else %}
+                                <!-- ELSE  -->
+                                <div class="wrap-out_stock">
+                                    <div class="block-out-stock">
+                                        <div class="danger-svg">
+                                            <img src="design/danger.svg" alt="">
+                                        </div>
+                                        <div class="out_stock-text">
+                                            <div class="danger-text">Out of stock</div>
+                                            <div class="sorry-text">Sorry, this item is currently out of stock.</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <!-- section of product  -->
+
+    <!-- section of reviews  -->
+    <section class="wrapper-reviews">
+        <div class="wrap-reviews">
+            <div class="wrap-product-name">
+                Zolmitriptan 2.5mg Tablets reviews
+            </div>
+            <div class="reviews-head">
+                <input class="input-comment p bg-white change-btn bb" onclick="showComment()" type="button" value="Comments({{comments.count}})">
+                <input class="input-feedback p bg-white change-btn" onclick="showFeedback()" type="button" value="Feedback({{reviews.count}})">
+            </div>
+
+            <!-- comment  -->
+
+            <div class="block-reviews js-comment transition">
+                {% if comments %}
+                <!-- block for back end -->
+                    {% for comment in comments %}
+                    <div class="box-review">
+                        <div class="column-first">
+                            <div class="client-name">Susan</div>
+                            <span class="review-date">6 month ago</span>
+
+                        </div>
+                        <div class="column-second">
+                            <div class="product-name">Zolmitriptan 2.5mg Tablets</div>
+                            <div class="client-review">Excellent service from order to delivery .would definitely recommend and will use on a regular basis myself . </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="wrap-wait ta">
+                        <div class="block-wait">
+                            <img width="300px" height="300px" src="{% static 'design/moon-black.webp' %}" alt="">
+                        </div>
+                        <div class="no-reviews">No reviews yet</div>
+                    </div>
+                {% endif %}
+                <!-- endblock -->
+
+            </div>
+            <!-- end comment  -->
+
+
+            <!-- feedback  -->
+            <div class="block-reviews js-feedback display transition">
+                <!-- block for back end -->
+                {% if reviews %}
+                    {% for review in reviews %}
+                        <div class="box-review">
+                            <div class="column-first">
+                                <div class="client-name">John</div>
+                                <span class="review-date">6 month ago</span>
+                            </div>
+                            <div class="column-second">
+                                <div class="product-name">Zolmitriptan 2.5mg Tablets</div>
+                                <div class="client-review">This is a feedback</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="wrap-wait ta">
+                        <div class="block-wait">
+                            <img width="300px" height="300px" src="{% static 'design/moon-black.webp' %}" alt="">
+                        </div>
+                        <div class="no-reviews">No reviews yet</div>
+                    </div>
+                {% endif %}
+                <!-- endblock -->
+            </div>
+            <!-- end feedback -->
+        </div>
+
     </section>
 {% endblock %}

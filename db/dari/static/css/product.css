@@ -29,8 +29,9 @@
     display: flex;
     justify-content: space-around;
 }
-.product-box {
-
+.product-box{
+    margin-left: 20px;
+    border: 1px solid black;
 }
 .product-desciption {
 }
