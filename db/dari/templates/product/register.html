@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    
+    <section class="register">
+        <header class="register-header">
+            <img class="rotate pos-abs-img" src="{% static 'images/register-head.svg' %}" alt="">    
+            <div class="wrapper-header-text">
+                <div class="header-title">Create an account</div>
+                <div class="header-subtitle">
+                    Create your account with us to be able to buy treatments and<br> register for our NHS prescription service.
+                </div>
+            </div>
+        </header>
+        
+        <section class="wrap-register-form">
+            <form class="register-form" method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="form-field">
+                    <div class="label">Username</div>
+                    <input type="text" name="username" value="{{username}}">
+                </div>
+                <div class="form-field">
+                    <div class="label">First Name</div>
+                    <input type="text" name="first_name" value="{{first_name}}">
+                </div>
+                <div class="form-field">
+                    <div class="label">Last Name</div>
+                    <input type="text" name="last_name" value="{{last_name}}">
+                </div>
+                <div class="form-field">
+                    <div class="label">Email</div>
+                    <input type="text" name="email" value="{{email}}">
+                </div>
+                <div class="form-field">
+                    <div class="label">Password</div>
+                    <input type="password" name="password1">
+                </div>
+                <div class="form-field">
+                    <div class="label">Confirm Password</div>
+                    <input type="password" name="password2">
+                </div>
+                <button type="submit" class="uppercase register-submit-btn">Create personal profile</button>
+
+            </form>
+        </section>
+
+    </section>
+</body>
+</html>

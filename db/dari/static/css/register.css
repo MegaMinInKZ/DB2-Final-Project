@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Ubuntu';
+    box-sizing: border-box;
+}
+
+body { 
+    background-color: white;
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    width: 696px;
+    height: 45px;
+    padding: 12px 16px;
+
+    outline: none;
+    border: 1px solid rgb(172, 191, 206);
+    border-radius: 5px;
+    transition: background-color .3s linear;
+}
+input:focus {
+    background-color: rgb(172, 191, 206);
+}
+button {
+    outline: none;
+    border: none;
+}
+
+.register {
+}
+.register-header {
+    
+}
+.rotate {
+    transform: rotate(180deg);
+}
+.pos-abs-img {
+    position: absolute;
+    z-index: -1;
+}
+.wrapper-header-text {
+    width: 768px;
+    height: 281px;
+    margin: 0 auto;
+    padding: 64px 24px 112px;
+}
+.header-title {
+    color: #15a9e3!important;
+    font-size: 32.5px;
+    font-weight: 700;
+    padding: 10px 0;
+}
+.header-subtitle {
+    margin-top: 8px;
+    color: rgb(23, 43, 58);
+    font-size: 14px;
+}
+.wrap-register-form {
+    width: 696px;
+    margin: 130px auto;
+}
+.register-form {
+    margin: 0 auto;
+
+}
+.form-field {
+    margin-bottom: 12px;
+}
+.label {
+    color: rgb(24, 67, 99);
+    font-weight: 700;
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.register-submit-btn {
+    background-image: linear-gradient(-45deg,#f5b840,#f2971f);
+    color: #184363;
+    font-weight: 600;
+    letter-spacing: .6px;
+    border-radius: 3px;
+
+    width: 464px;
+    height: 60px;
+    padding: 20px;
+    margin: 20px 120px 0;
+    transition: transform .3s linear;
+}
+.register-submit-btn:hover {
+    transform: scale(1.05);
+}
