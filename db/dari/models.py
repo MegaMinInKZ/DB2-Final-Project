@@ -21,6 +21,7 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=255)
     upload_date = models.DateField(auto_now_add=True)
+    update_date = models.DateField(auto_now=True)
     price = models.IntegerField()
     amount = models.IntegerField()
     Image = models.URLField(max_length = 200)

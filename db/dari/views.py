@@ -9,6 +9,8 @@ import csv
 from .db_views import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
+from django.http import FileResponse
+
 
 
 context = {}
@@ -82,4 +84,18 @@ def login_(request):
             return render(request, 'product/login.html', context)
     return render(request, 'product/login.html')
 
+def transaction(request):
+    purchase_id = request.POST.get('purchase_id')
+    object_name = Purchase.objects.get(pk=purchase_id)
+    filename = object_name.transaction.name.split('/')[-1]
+    response = HttpResponse(object_name.transaction, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
+
+    return response
+def test(request):
+    user = User.objects.get(pk=2)
+    product = Product.objects.get(pk=3)
+    x = Purchase.objects.create(amount=1, user=user, product=product)
+    x.transaction = 'purchase/'+ str(x.pk) + '.txt'
+    x.save()
 # Create your views here.
