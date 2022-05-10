@@ -103,12 +103,12 @@
                     {% for comment in comments %}
                     <div class="box-review">
                         <div class="column-first">
-                            <div class="client-name">Susan</div>
-                            <span class="review-date">6 month ago</span>
+                            <div class="client-name">{{comment.user.username}}</div>
+                            <span class="review-date">{{comment.get_day}}</span>
 
                         </div>
                         <div class="column-second">
-                            <div class="product-name">Zolmitriptan 2.5mg Tablets</div>
+                            <div class="product-name">{{product.title}}</div>
                             <div class="client-review">{{comment.text}} </div>
                         </div>
                     </div>
@@ -134,11 +134,11 @@
                     {% for review in reviews %}
                         <div class="box-review">
                             <div class="column-first">
-                                <div class="client-name">John</div>
-                                <span class="review-date">6 month ago</span>
+                                <div class="client-name">{{review.user.username}}</div>
+                                <span class="review-date">{{review.get_day}}</span>
                             </div>
                             <div class="column-second">
-                                <div class="product-name">Zolmitriptan 2.5mg Tablets</div>
+                                <div class="product-name">{{product.title}}</div>
                                 <div class="client-review">{{review.feedback_text}}</div>
                             </div>
                         </div>

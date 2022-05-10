@@ -10,7 +10,7 @@ from .db_views import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.http import FileResponse
-
+import cx_Oracle
 
 
 context = {}
@@ -148,6 +148,7 @@ def buy(request):
         purchase.save()
         Feedback.objects.create(user=request.user, feedback_text=request.POST.get('feedback'), product=cart.product).save()
         Rating.objects.create(user=request.user, value=request.POST.get('rating'), product=cart.product).save()
+        cart.delete()
     return redirect('profile')
 
 

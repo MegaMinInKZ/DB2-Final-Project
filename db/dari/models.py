@@ -55,7 +55,8 @@ class Comment(models.Model):
     day = models.DateField(auto_now_add=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    def get_day(self):
+        return cx_Oracle.connect('DB', 'db').cursor().callfunc("get_day_or_month_comment", str, [self.pk])
 class Cart(models.Model):
     day = models.DateField(auto_now_add=True)
     amount = models.IntegerField()
@@ -77,6 +78,8 @@ class Feedback(models.Model):
     day = models.DateField(auto_now_add=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def get_day(self):
+        return cx_Oracle.connect('DB', 'db').cursor().callfunc("get_day_or_month_feedback", str, [self.pk])
 
 
 
