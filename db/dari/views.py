@@ -23,14 +23,14 @@ def index(request):
         'categories': categories
     }
     return render(request, 'product/index.html', context)
-def category(request):
+def category(request, slug):
     cat = Category.objects.get(slug=slug)
     products = Product.objects.filter(category=cat)
     context = {
-        'title': cat.title,
+        'title': cat.name,
         'products': products,
     }
-    return render(request, 'product/category.html', context)
+    return render(request, 'product/_category_page.html', context)
 
 def product(request, pk):
     product = Product.objects.get(pk=pk)
@@ -41,13 +41,8 @@ def product(request, pk):
         'price_history': prices,
         'product': product,
         'comments': comments,
+        'reviews': Feedback.objects.filter(product=product)
     }
-    purchase = Purchase.objects.filter(product_id=pk)
-    if purchase:
-        reviews = Feedback.objects.filter(purchase_id=purchase.pk)[0]
-        context['reviews'] = reviews
-    else:
-        context['reviews'] = Feedback.objects.filter(pk=-1)
     return render(request, 'product/product.html', context)
 
 def register(request):
@@ -84,18 +79,79 @@ def login_(request):
             return render(request, 'product/login.html', context)
     return render(request, 'product/login.html')
 
+def logout_(request):
+    logout(request)
+    return redirect('home')
+
 def transaction(request):
     purchase_id = request.POST.get('purchase_id')
     object_name = Purchase.objects.get(pk=purchase_id)
     filename = object_name.transaction.name.split('/')[-1]
     response = HttpResponse(object_name.transaction, content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
-
     return response
-def test(request):
-    user = User.objects.get(pk=2)
-    product = Product.objects.get(pk=3)
-    x = Purchase.objects.create(amount=1, user=user, product=product)
-    x.transaction = 'purchase/'+ str(x.pk) + '.txt'
-    x.save()
+
+
+def basket(request):
+    if request.user:
+        carts = Cart.objects.filter(user=request.user)
+        context = {
+            'title': 'My carts',
+            'carts': carts
+        }
+        return render(request, 'product/basket.html', context)
+    return redirect('login')
+
+def add_to_basket(request):
+    if request.method == "POST":
+        Cart.objects.create(amount=request.POST.get('amount'), user=request.user, product=Product.objects.get(pk=request.POST.get('product_id'))).save();
+        redirect('basket')
+    return redirect('basket')
+
+
+def profile(request):
+    purchases = Purchase.objects.filter(user=request.user)
+    context = {
+        'title': "My Profile",
+        'purchases': purchases,
+    }
+    return render(request, 'product/profile.html', context)
+
+def edit_profile(request):
+    if request.method == "POST":
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            return redirect('profile')
+        else:
+            context['error'] = "Enter unique username and email, also check out first name and last name accuracy"
+    return render(request, 'product/edit_profile.html', context)
+def update_cart(request):
+    if request.method == "POST":
+        cart_id = request.POST.get('cart_id')
+        cart = Cart.objects.get(pk=cart_id)
+        cart.amount = request.POST.get('amount')
+        cart.save()
+    return redirect('basket')
+
+def delete_cart(request):
+    if request.method == "POST":
+        cart_id = request.POST.get('cart_id')
+        Cart.objects.filter(pk=cart_id).delete()
+    return redirect('basket')
+
+def buy(request):
+    if request.method == "POST":
+        cart = Cart.objects.get(pk=request.POST.get('cart_id'))
+        purchase = Purchase.objects.create(amount=cart.amount, user=cart.user, product=cart.product, total_price=cart.product.price * cart.amount)
+        purchase.transaction = "purchase/" + str(purchase.pk) + ".txt"
+        purchase.save()
+        Feedback.objects.create(user=request.user, feedback_text=request.POST.get('feedback'), product=cart.product).save()
+        Rating.objects.create(user=request.user, value=request.POST.get('rating'), product=cart.product).save()
+    return redirect('profile')
+
+
+def check(request):
+    return FileResponse(Purchase.objects.get(pk=request.POST.get('purchase_id')).transaction, as_attachment=True, filename='purchase.txt')
+
 # Create your views here.

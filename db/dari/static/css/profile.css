@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu';
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+body {
+    background-color: #f8fafb;
+}
+
+/* account header  */
+
+.profile-header {
+    background-image: linear-gradient(-45deg,#16bce5,#1496e1);
+}
+.block-profile-header {
+    width: 1120px;
+    height: 174px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+.your-account-text {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.block-account {
+    display: flex;
+    justify-content: space-between;
+}
+.welcome-username {
+    font-weight: 700;
+    font-size: 29px;
+    color: white;    
+
+    vertical-align: baseline;
+}
+.account-buttons {
+    display: flex;
+    align-items: flex-end;    
+}
+.update-btn {
+    color: wheat;
+}
+.logout-btn {
+    color: wheat;
+    margin-left: 25px;
+}
+.account-button-effect {
+    transition: transform .3s linear;
+}
+.account-button-effect:hover {
+    color: white;
+    transform: scale(1.05);
+}
+/* account header  */
+
+
+.wrap-purchase {
+    margin-top: 40px;
+}
+.block-purchases {
+    width: 1120px;
+    margin: 0 auto;
+}
+.block-purchases__title {
+    font-weight: 500;
+    font-size: 23px;
+    color: rgb(24, 67, 99);    
+}
+.wrapper-purchase {
+    margin-top: 20px;
+    border-radius: 6.4px;
+    box-shadow: 0 0.5rem 1rem 0 rgb(24 67 99 / 10%), 0 1px 2px 0 rgb(24 67 99 / 10%);
+    padding: 16px;
+    background-color: white;
+}
+
+/* no-purchase  */
+.box-purchase {
+    border: 1px dashed rgb(223, 237, 247);
+    border-radius: 6.4px;
+    text-align: center;
+    padding: 16px;
+}
+.no-purchase-title {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(23, 43, 58);    
+}
+.no-purchase-subtitle {
+    margin-top: 7px;
+
+    font-weight: 400;
+    font-size: 14px;
+    color: #56778f;    
+}
+/* no-purchase  */
+
+/* box product in basket */
+.wrap-product-box {
+}
+.box-product {
+    display: flex;
+    padding: 24px;
+    border: 1px solid #dfedf7;
+    border-radius: 5px;
+}
+.box-product:not(:first-child) {
+    margin-top: 15px;
+}
+.product-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.product-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(23, 43, 58);    
+}
+.product-amount {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(86, 119, 143);  
+}
+.product-manipulate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin-left: 48px;
+}
+.last-updated-date {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(86, 119, 143);   
+}
+.product-manipulate-buttons {
+    display: flex;
+}
+.purchase-check {
+    color: #128097;  
+}
+.purchase-check:hover {
+    background-color: #ddf4ff;
+}
+.basket-buttons {
+    display: block;
+    padding: 16px;
+    font-weight: 700;
+    font-size: 13.2px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: transform .3s linear;
+}
+.basket-buttons:hover {
+    transform: scale(1.05);
+}
+/* box product in basket */

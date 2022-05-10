@@ -31,9 +31,13 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('product', kwargs={'pk': self.pk})
     def get_rating(self):
-        return cx_Oracle.connect('DB', 'db').cursor().callfunc("amount_rating_product", int, [self.pk])
+        return cx_Oracle.connect('DB', 'db').cursor().callfunc("average_rating_product", float, [self.pk])
     def get_rating_count(self):
         return cx_Oracle.connect('DB', 'db').cursor().callfunc("amount_rating_product", int, [self.pk])
+    def get_comment_count(self):
+        return cx_Oracle.connect('DB', 'db').cursor().callfunc("amount_comment_product", int, [self.pk])
+    def get_feedback_count(self):
+        return cx_Oracle.connect('DB', 'db').cursor().callfunc("amount_feedback_product", int, [self.pk])
 
 class Rating(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -57,6 +61,8 @@ class Cart(models.Model):
     amount = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    def get_total_price(self):
+        return self.amount * self.product.price
 
 class Purchase(models.Model):
     day = models.DateField(auto_now_add=True)
@@ -64,11 +70,13 @@ class Purchase(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     transaction = models.FileField(null=True)
+    total_price = models.IntegerField()
 
 class Feedback(models.Model):
-    description = models.TextField()
-    day = models.DateField()
-    purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
+    feedback_text = models.TextField()
+    day = models.DateField(auto_now_add=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 

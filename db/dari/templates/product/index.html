@@ -53,7 +53,7 @@
                 <div class="wrapper-grid-treatments grid">
                     {% for category in categories %}
                         <div class="wrap-grid-item">
-                            <a href="" class="grid__item">{{ category.name }}</a>
+                            <a href="{{category.get_absolute_url}}" class="grid__item">{{ category.name }}</a>
                         </div>
                     {% endfor %}
                 </div>

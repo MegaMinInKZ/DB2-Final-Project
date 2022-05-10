@@ -17,6 +17,7 @@
                             <div class="flex relative">
 
                                 <div class="product-review mt17">
+                                    <div class="rating">{{product.get_rating}}</div>
                                     <div class="star">
                                         <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
                                         <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
@@ -27,7 +28,13 @@
                                     <span>({{product.get_rating_count}} reviews)</span>
                                 </div>
 
-                                <div class="product-price">{{product.price}}&#8376;</div>
+                                <div class="data-prices">
+                                    <!-- <div class="product-price">1240&#8376;</div> -->
+                                    <p class="product-price">{{product.price}}&#8376;</p>
+                                    <div class="block-chart-price">
+                                        <canvas id="myChart" width="460" height="260"></canvas>
+                                    </div>
+                                </div>                            
                             </div>
 
                         </div>
@@ -40,11 +47,19 @@
                                 {% if product.amount > 0 %}
                                 <div class="wrap-amount">
                                     <span class="amount_text">Amount:</span>
-                                    <span class="amount_text-number">34</span>
+                                    <span class="amount_text-number">{{product.amount}}</span>
                                 </div>
-                                <a href="" class="add_basket text-style">
-                                    Add to Basket
-                                </a>
+                                <form class="select-quantity-form" action="{% url 'add-to-basket' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="number" name="product_id" value="{{product.pk}}" hidden>
+                                    <div class="wrap-select-quantity">
+                                        <div class="select-quantity-text">Select quantity</div>
+                                        <input type="number" max="{{product.amount}}" min="1" name="amount" class="select-quantity-input" value="1">
+                                    </div>
+                                    <button type="submit" class="add_basket text-style">
+                                        Add to Basket
+                                    </button>
+                                </form>
                                 {% else %}
                                 <!-- ELSE  -->
                                 <div class="wrap-out_stock">
@@ -73,7 +88,7 @@
     <section class="wrapper-reviews">
         <div class="wrap-reviews">
             <div class="wrap-product-name">
-                Zolmitriptan 2.5mg Tablets reviews
+                {{product.title}} reviews
             </div>
             <div class="reviews-head">
                 <input class="input-comment p bg-white change-btn bb" onclick="showComment()" type="button" value="Comments({{comments.count}})">
@@ -94,7 +109,7 @@
                         </div>
                         <div class="column-second">
                             <div class="product-name">Zolmitriptan 2.5mg Tablets</div>
-                            <div class="client-review">Excellent service from order to delivery .would definitely recommend and will use on a regular basis myself . </div>
+                            <div class="client-review">{{comment.text}} </div>
                         </div>
                     </div>
                     {% endfor %}
@@ -103,7 +118,7 @@
                         <div class="block-wait">
                             <img width="300px" height="300px" src="{% static 'design/moon-black.webp' %}" alt="">
                         </div>
-                        <div class="no-reviews">No reviews yet</div>
+                        <div class="no-reviews">No comments yet</div>
                     </div>
                 {% endif %}
                 <!-- endblock -->
@@ -124,7 +139,7 @@
                             </div>
                             <div class="column-second">
                                 <div class="product-name">Zolmitriptan 2.5mg Tablets</div>
-                                <div class="client-review">This is a feedback</div>
+                                <div class="client-review">{{review.feedback_text}}</div>
                             </div>
                         </div>
                     {% endfor %}
@@ -142,4 +157,69 @@
         </div>
 
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
+    <script>
+        var nodeCommentBtn = document.querySelector('.js-comment');
+        var nodeFeedbackBtn = document.querySelector('.js-feedback');
+        var nodeComment = document.querySelector('.input-comment');
+        var nodeFeedback = document.querySelector('.input-feedback');
+
+        console.log(nodeCommentBtn);
+
+        function showComment() {
+            nodeCommentBtn.classList.remove('display');
+            nodeFeedbackBtn.classList.add('display');
+
+            nodeComment.classList.add('bb');
+            nodeFeedback.classList.remove('bb');
+        };
+
+        function showFeedback() {
+            nodeCommentBtn.classList.add('display');
+            nodeFeedbackBtn.classList.remove('display');
+
+            nodeComment.classList.remove('bb');
+            nodeFeedback.classList.add('bb');
+        };   
+
+        /* ============================================ last changes */
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for price in price_history %}'{{price.day}}',{%endfor%}],
+                datasets: [{
+                    label: 'Price Evolution',
+                    data: [{% for price in price_history %}{{price.price}},{%endfor%}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        /* ============================================ last changes */
+
+    </script>
 {% endblock %}

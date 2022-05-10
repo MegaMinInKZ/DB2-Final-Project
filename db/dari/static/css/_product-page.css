@@ -1,9 +1,10 @@
 /* product block */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
-input {
+input, button {
     border: none;
 }
+
 .wrap-wait {
     display: flex;
     flex-direction: column;
@@ -59,9 +60,10 @@ a {
     justify-content: space-around;
 }
 .product-box {
-    margin-left: 20px;
+
 }
 .product-desciption {
+    position: relative;
 }
 .product-title {
     font-weight: 700;
@@ -85,16 +87,7 @@ a {
 }
 .star {
 }
-.product-price {
-    position: absolute;
-    right: 0;
 
-    font-weight: 500;
-    font-size: 23px;
-    color: rgb(57, 203, 116);
-    line-height: 23px;
-    
-}
 .wrapper-buttons {
 
 }
@@ -155,6 +148,29 @@ a {
 
     text-transform: uppercase;
 }
+.select-quantity-form {
+    
+}
+.wrap-select-quantity {
+    margin-bottom: 35px;
+}
+.select-quantity-text {
+    font-weight: 700;
+    font-size: 14px;
+    color: rgb(24, 67, 99);
+    
+    margin-bottom: 12px;
+}
+.select-quantity-input {
+    width: 524px;
+    height: 44px;
+    border: 1px solid rgb(189, 206, 219);
+    border-radius: 5px;
+    outline: none;
+    padding: 12px 16px;
+}
+
+
 
 
 /* out of stock block */
@@ -299,3 +315,57 @@ a {
     display: none;
 }   
 /* end of reviews block */
+
+/* ============================================ last changes */
+
+/* chart js */
+.product-price {
+    position: absolute;
+    right: 0;
+    top: -25px;
+
+    font-weight: 500;
+    font-size: 23px;
+    color: rgb(57, 203, 116);
+    line-height: 23px;   
+    cursor: pointer;
+}
+
+.data-prices {
+    position: absolute;
+    right: 0;
+    bottom: 23px;
+}
+
+.block-chart-price {   
+    display: inline-block;
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    right: 30px;
+    top: 30px;
+
+    border-radius: 5px;
+    visibility: hidden;
+    transform: scale(0);
+    transition: all .3s ease;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+.data-prices:hover div {
+    visibility: visible;
+    transform: scale(1);
+}
+.rating {
+    font-weight: 600;
+    font-size: 26px;
+    color: #957FEF;
+    line-height: 25px;
+    
+    margin-right: 7px;
+}
+/* chart js */
+
+/* ============================================ last changes */
+

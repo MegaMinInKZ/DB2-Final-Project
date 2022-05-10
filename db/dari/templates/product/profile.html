@@ -1,0 +1,65 @@
+{% extends 'product/base.html' %}
+{% load static %}
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+{% block content %}
+    <header class="profile-header">
+        <div class="block-profile-header">
+            <div class="your-account-text">
+                Ваш аккаунт
+            </div>
+            <div class="block-account">
+                <div class="welcome-username">
+                    Привет {{user.first_name}} {{user.last_name}}
+                </div>
+                <div class="account-buttons">
+                    <a href="{% url 'edit-profile' %}" class="update-btn account-button-effect">Редактировать</a>     
+                    <a href="{% url 'logout' %}" class="logout-btn account-button-effect">Выйти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="wrap-purchase">
+        <div class="block-purchases">
+            <div class="block-purchases__title">Покупки</div>
+            <div class="wrapper-purchase">               
+                {% if purchases %}
+                    <div class="wrap-product-box">
+                        {% for purchase in purchases%}
+                            <div class="box-product">
+                                <div class="product-info">
+                                    <div class="product-name">
+                                        <a href="{{purchase.product.get_absolute_url}}">{{purchase.product.title}}</a>
+                                    </div>
+                                    <div class="product-amount">
+                                        {{purchase.amount}} items | Total: {{purchase.total_price}}тг
+                                    </div>
+                                </div>
+                                <div class="product-manipulate">
+                                    <div class="last-updated-date">{{purchase.day}}</div>
+                                    <form action="{% url 'check' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <input type="number" name="purchase_id" id="" value="{{purchase.pk}}" hidden>
+                                        <button type="submit" class="purchase-check basket-buttons">Check</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}    
+                    </div>
+                {% else %}
+                    <div class="box-purchase">
+                        <div class="no-purchase-title">
+                            У вас нет недавних заказов
+                        </div>
+                        <div class="no-purchase-subtitle">
+                            Если у вас есть какие-либо недавние заказы, они<br> появятся здесь.
+                        </div>
+                    </div>
+                {% endif %}
+                
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'product/base.html' %}
+{% load static %}
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/_category_page.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="wrapper-treatments">
+        <div class="wrap-treatments _container">
+            <div class="block-treatments">
+                <div class="category_name">{{title}}</div>
+    
+                <div class="wrapper-grid-treatments grid">
+                    {% for product in products %}
+                        <a class="product-link wrap-grid-item" href="{{product.get_absolute_url}}">
+                            <div class="product__picture">
+                                <img width="100px" height="100px" src="{{product.Image}}" alt="abidec">
+                            </div>
+                            <div class="card-product-text">
+                                <div class="product__title">{{product.title}}</div>
+                                <div class="product__price">{{product.price}}&#8376;</div>
+        
+                                <div class="product_review">
+                                    <div class="stars">
+                                        
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                        <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                    </div>
+                                    <p class="review-text">({{product.get_rating_count}} reviews)</p>
+        
+                                </div>
+                            </div>
+                            <div class="product__btn">
+                                View details
+                            </div>
+                        </a>  
+                    {% endfor %}    
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}

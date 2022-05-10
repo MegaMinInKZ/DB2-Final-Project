@@ -35,15 +35,25 @@
                     </div>
                 </div>
                 <div class="header-second">
-                    <a class="sign-in" href="{% url 'login' %}">
-                        <span>Sign in</span>
-                        <img src="{% static 'design/avatar-dark-blue.svg' %}" alt="" class="sign-in__logo">
-                    </a>
-
-                    <a class="basket" href="">
-                        <span>Basket</span>
-                        <img src="{% static 'design/cart.svg' %}" alt="" class="basket__logo">
-                    </a>
+                    {% if user.is_authenticated %}
+                        <a class="sign-in" href="{% url 'profile' %}">
+                            <span>{{user.username}}</span>
+                            <img src="{% static 'design/avatar-dark-blue.svg' %}" alt="" class="sign-in__logo">
+                        </a>
+                        <a class="basket" href="{% url 'basket' %}">
+                            <span>Basket</span>
+                            <img src="{% static 'design/cart.svg' %}" alt="" class="basket__logo">
+                        </a>
+                    {% else %}
+                        <a class="sign-in" href="{% url 'login' %}">
+                            <span>Sign in</span>
+                            <img src="{% static 'design/avatar-dark-blue.svg' %}" alt="" class="sign-in__logo">
+                        </a>
+                        <a class="basket" href="{% url 'login' %}">
+                            <span>Basket</span>
+                            <img src="{% static 'design/cart.svg' %}" alt="" class="basket__logo">
+                        </a>
+                    {% endif %}
                 </div>
 
             </div>
