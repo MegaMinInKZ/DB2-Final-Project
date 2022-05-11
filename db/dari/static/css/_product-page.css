@@ -365,6 +365,34 @@ a {
     
     margin-right: 7px;
 }
+.wrap-add-comment {
+    margin-top: 33px;
+    margin-bottom: 23px;
+}
+.add-comment-input {
+    border: none;
+    outline: none;
+
+    width: 90%;
+    height: 40px;
+    padding: 12px;
+    border-radius: 4px;
+    
+    background-color: #e1f9fd;
+}
+.add-comment-btn {
+    background-color: #f2971f;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(23, 43, 58);
+    text-transform: uppercase;
+    transition: transform .3s linear;
+}
+.add-comment-btn:hover {
+    transform: scale(1.05);
+}
 /* chart js */
 
 /* ============================================ last changes */

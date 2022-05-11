@@ -18,4 +18,8 @@ urlpatterns = [
     path('delete-cart/', delete_cart, name='delete-cart'),
     path('buy/', buy, name='buy'),
     path('check/', check, name='check'),
+    path('search/', search, name='search'),
+    path('comment/', comment, name='comment'),
+    path('delete-unvisited-users/', delete_users, name='delete-unvisited-users'),
+    path('delete-unused-products/', delete_products, name='delete-unused-product'),
 ]

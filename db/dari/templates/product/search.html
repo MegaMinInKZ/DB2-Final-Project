@@ -1,0 +1,84 @@
+
+{% extends 'product/base.html' %}
+{% load static %}
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="wrapper-form">
+        <div class="block-form _container">
+            <form action="{% url 'search' %}" method="get">
+
+                <div class="header-search-filter">
+                    <input type="text" name="search" id="" class="search-input-filter" value="{{search}}" placeholder="Search...">
+                </div>
+                <div class="d-flex">
+                    <aside class="wrap-filter">
+                        <div class="block-filter-categories">
+                            <strong>Категория</strong>
+                            {% for category in categories %}
+                                <div class="join">
+                                    <input type="checkbox" checked name="category" id="med" class="category-checkbox" value="{{category.pk}}">
+                                    <label for="">{{category.name}}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="block-filter-price">
+                            <strong>Цена</strong>
+                            <input type="number" name="price_min" min="0" id="" class="price-input" placeholder="Min: 0" value="{{price_min}}">
+                            <input type="number" name="price_max" max="100000" id="" class="price-input" placeholder="Max: 100000" value="{{price_max}}">
+                        </div>
+
+                        <button type="submit" class="search-submit-btn">Search</button>
+                    </aside>
+                    <div class="wrapper-search-result">
+                        <div class="wrapper-grid-treatments grid">
+                            {% if products %}
+                                {% for product in products%}
+                                    <a class="product-link wrap-grid-item" href="{{product.get_absolute_url}}">
+                                        <div class="product__picture">
+                                            <img width="100px" height="100px" src="{{product.Image}}" alt="abidec">
+                                        </div>
+                                        <div class="card-product-text">
+                                            <div class="product__title">{{product.title}}</div>
+                                            <div class="product__price">{{product.price}}</div>
+                    
+                                            <div class="product_review">
+                                                <div class="stars">
+                                                    
+                                                    <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                                    <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                                    <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                                    <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                                    <img width="24px" src="{% static 'design/star.svg' %}" alt="star">
+                                                </div>
+                                                <p class="review-text">({{product.get_rating_count}} reviews)</p>
+                    
+                                            </div>
+                                        </div>
+                                        <div class="product__btn">
+                                            View details
+                                        </div>
+                                    </a>   
+                                {% endfor %}
+                            {% else%}
+                            <!-- if nothing to show  --> 
+                                <div class="wrap-no-search-result"> 
+                                    <div class="no-search-result"> 
+                                        <div class="result__title">We can't find any matches for "{{search}}"</div> 
+                                        <div class="result__subtitle"> 
+                                            We stock 450 treatments for 5 conditions 
+                                        </div> 
+                                    </div> 
+                                </div> 
+                            {% endif %}
+                    <!-- if nothing to show  -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{%endblock%}

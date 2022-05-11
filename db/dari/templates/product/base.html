@@ -9,6 +9,9 @@
     <link type="text/css" rel="stylesheet" href="{% static 'css/footer.css' %}">
     {% block scripts%}
     {% endblock %}
+    <title>
+        {% block title %}{% endblock %}
+    </title>
 </head>
 <body>
     <div class="header">
@@ -26,8 +29,8 @@
                     </a>
 
                     <div class="header-search">
-                        <form class="search-form" method="post">
-                            <input class="search-input" placeholder="Search for a condition or treatment..." type="text" required/>
+                        <form class="search-form" method="get" action="{% url 'search' %}">
+                            <input class="search-input" name="search" placeholder="Search for a condition or treatment..." type="text" required/>
                             <button class="search-btn" type="submit">
                                 <img width="18px" height="18px" src="{% static 'design/search.svg' %}" alt="" class="search-logo">
                             </button>

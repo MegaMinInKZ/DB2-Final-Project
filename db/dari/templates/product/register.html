@@ -1,5 +1,12 @@
+{% extends 'product/base.html' %}
 {% load static %}
+{% block title %}Register{% endblock %}
 
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,5 +62,4 @@
         </section>
 
     </section>
-</body>
-</html>
+{% endblock %}

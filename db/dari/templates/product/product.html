@@ -109,7 +109,7 @@
                         </div>
                         <div class="column-second">
                             <div class="product-name">{{product.title}}</div>
-                            <div class="client-review">{{comment.text}} </div>
+                            <div class="client-review">{{comment.comment_text}} </div>
                         </div>
                     </div>
                     {% endfor %}
@@ -122,7 +122,14 @@
                     </div>
                 {% endif %}
                 <!-- endblock -->
-
+                <div class="wrap-add-comment">
+                    <form action="{% url 'comment' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="product_id" value="{{product.pk}}" hidden>
+                        <input type="text" name="comment_text" id="" placeholder="Press Enter to add a comment" class="add-comment-input" required> 
+                        <button type="submit" class="add-comment-btn">Comment</button>
+                    </form>
+                </div>
             </div>
             <!-- end comment  -->
 
@@ -153,8 +160,10 @@
                 {% endif %}
                 <!-- endblock -->
             </div>
+            
             <!-- end feedback -->
         </div>
+
 
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>

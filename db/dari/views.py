@@ -10,6 +10,7 @@ from .db_views import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.http import FileResponse
+from django.contrib import messages
 import cx_Oracle
 
 
@@ -75,6 +76,7 @@ def login_(request):
             return redirect('home')
         else:
             context['error'] = "Invalid username or password"
+            messages.error(request, 'Invalid username or password') # by Duman
             context['username'] = request.POST.get('username')
             return render(request, 'product/login.html', context)
     return render(request, 'product/login.html')
@@ -139,7 +141,15 @@ def delete_cart(request):
         cart_id = request.POST.get('cart_id')
         Cart.objects.filter(pk=cart_id).delete()
     return redirect('basket')
-
+def comment(request):
+    if request.user.username:
+        if request.method == 'POST':
+            product = Product.objects.get(pk=request.POST.get('product_id'))
+            Comment.objects.create(user=request.user, product=product, comment_text=request.POST.get('comment_text')).save()
+            return redirect(product.get_absolute_url())
+        return redirect('profile')
+    else:
+        return redirect('login')
 def buy(request):
     if request.method == "POST":
         cart = Cart.objects.get(pk=request.POST.get('cart_id'))
@@ -150,9 +160,42 @@ def buy(request):
         Rating.objects.create(user=request.user, value=request.POST.get('rating'), product=cart.product).save()
         cart.delete()
     return redirect('profile')
-
+def search(request):
+    context['title'] = 'Search Results'
+    price_max = 100000
+    price_min = 0
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        if search:
+            context['search'] = search
+            if request.GET.get('price_max'):
+                price_max = request.GET.get('price_max')
+                price_min = request.GET.get('price_min')
+                context['products'] = Product.objects.filter(title__icontains=search, category__pk__in=request.GET.getlist('category'), price__lte=price_max, price__gte=price_min)
+            else:
+                context['products'] = Product.objects.filter(title__icontains=search)
+        else:
+            if request.GET.get('price_max'):
+                price_max = request.GET.get('price_max')
+                price_min = request.GET.get('price_min')
+                context['products'] = Product.objects.filter(category__pk__in=request.GET.getlist('category'), price__lte=price_max, price__gte=price_min)
+    context['price_max'] = price_max
+    context['price_min'] = price_min
+    context['categories'] = Category.objects.all()
+    return render(request, 'product/search.html', context)
 
 def check(request):
     return FileResponse(Purchase.objects.get(pk=request.POST.get('purchase_id')).transaction, as_attachment=True, filename='purchase.txt')
+
+
+def delete_users(request):
+    cx_Oracle.connect('DB', 'db').cursor().callproc("deactivate_users", [])
+    return redirect('profile')
+
+
+def delete_products(request):
+    cx_Oracle.connect('DB', 'db').cursor().callproc("deactivate_products", [])
+    return redirect('profile')
+
 
 # Create your views here.
