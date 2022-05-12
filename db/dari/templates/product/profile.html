@@ -7,15 +7,15 @@
     <header class="profile-header">
         <div class="block-profile-header">
             <div class="your-account-text">
-                Ваш аккаунт
+                Your account
             </div>
             <div class="block-account">
                 <div class="welcome-username">
-                    Привет {{user.first_name}} {{user.last_name}}
+                    Hi {{user.first_name}} {{user.last_name}}
                 </div>
                 <div class="account-buttons">
-                    <a href="{% url 'edit-profile' %}" class="update-btn account-button-effect">Редактировать</a>     
-                    <a href="{% url 'logout' %}" class="logout-btn account-button-effect">Выйти</a>
+                    <a href="{% url 'edit-profile' %}" class="update-btn account-button-effect">Edit profile</a>     
+                    <a href="{% url 'logout' %}" class="logout-btn account-button-effect">Exit</a>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
     {% endif %}
     <section class="wrap-purchase">
         <div class="block-purchases">
-            <div class="block-purchases__title">Покупки</div>
+            <div class="block-purchases__title">Purchases</div>
             <div class="wrapper-purchase">               
                 {% if purchases %}
                     <div class="wrap-product-box">
@@ -56,10 +56,10 @@
                 {% else %}
                     <div class="box-purchase">
                         <div class="no-purchase-title">
-                            У вас нет недавних заказов
+                            You have no recent orders                        
                         </div>
                         <div class="no-purchase-subtitle">
-                            Если у вас есть какие-либо недавние заказы, они<br> появятся здесь.
+                            If you have any recent orders, they<br> will appear here.                        
                         </div>
                     </div>
                 {% endif %}

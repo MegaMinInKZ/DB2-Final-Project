@@ -35,7 +35,7 @@ def category(request, slug):
 
 def product(request, pk):
     product = Product.objects.get(pk=pk)
-    prices = Price_History.objects.filter(product_id=pk)
+    prices = Price_History.objects.filter(product_id=pk).order_by('day')
     comments = Comment.objects.filter(product_id=pk)
     context = {
         'title': product.title,

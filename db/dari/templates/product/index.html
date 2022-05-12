@@ -8,11 +8,11 @@
         <div class="wrap-welcome _container">
             <div class="block-welcome">
                 <div class="welcome-first">
-                    <div class="welcome-title">Ваша надежная онлайн-аптека.</div>
-                    <div class="welcome-subtitle">Безопасный и простой способ купить более 632 лекарств онлайн без посещения врача-терапевта и аптеки терапевта или аптеку</div>
+                    <div class="welcome-title">Your trusted online pharmacy.</div>
+                    <div class="welcome-subtitle">The safe & easy way to buy over 633 treatments online without visiting your GP or pharmacy</div>
                     <div class="welcome-search">
-                        <form class="welcome-form" method="post">
-                            <input class="welcome-input" placeholder="Поиск состояние или лечения..." type="text" required/>
+                        <form class="welcome-form" method="get" action="{% url 'search' %}">
+                            <input class="welcome-input" name="search" placeholder="Search for a condition or treatment..." type="text" required/>
                             <button class="welcome-btn" type="submit">
                                 <img width="18px" height="18px" src="{% static 'design/search.svg' %}" alt="" class="welcome-logo">
                             </button>
@@ -24,14 +24,14 @@
                                 <img src="{% static 'design/drug.svg' %}" alt="">
                                 <span class="count">12.4k</span>
                             </div>
-                            <p class="additional">Оказанные услуги</p>
+                            <p class="additional">treatments delivered</p>
                         </div>
                         <div class="welcome-users p24">
                             <div class="users-count">
                                 <img src="{% static 'design/avatar.svg' %}" alt="">
                                 <span class="count">1 000</span>
                             </div>
-                            <p class="additional">Зарегистрированные пользователи</p>
+                            <p class="additional">registered users</p>
                         </div>
                     </div>
                 </div>
@@ -45,9 +45,9 @@
     <section class="wrapper-treatments">
         <div class="wrap-treatments _container">
             <div class="block-treatments">
-                <div class="treatments-title">Популярные процедуры</div>
+                <div class="treatments-title">Popular Treatments</div>
                 <div class="treatments-subtitle">
-                    Мы постоянно расширяем список процедур, которые мы можем предоставить<br> онлайн, чтобы у нас всегда было подходящее лечение для вас.
+                    We're constantly expanding the treatments that we can provide online to ensure we always have the right treatment for you.
                 </div>
 
                 <div class="wrapper-grid-treatments grid">
@@ -64,9 +64,9 @@
     <section class="wrapper-treatments">
         <div class="wrap-treatments _container">
             <div class="block-treatments">
-                <div class="treatments-title">Популярные товары</div>
+                <div class="treatments-title">Popular products</div>
                 <div class="treatments-subtitle">
-                    Компонент выводит список самых продаваемых товаров, который формируется с учетом <br>статусов заказов. Компонент стандартный и входит в дистрибутив модуля.
+                    We're constantly expanding the treatments that we <br> can provide online to ensure we always have the right treatment for you.                
                 </div>
 
                 <div class="wrapper-grid-treatments grid">
