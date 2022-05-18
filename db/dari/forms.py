@@ -25,3 +25,8 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name']
+
+class AddProduct(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['title', 'price', 'amount', 'Image', 'category']

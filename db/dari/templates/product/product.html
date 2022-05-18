@@ -9,7 +9,7 @@
         <div class="wrapper-product">
             <div class="wrap-product">
                 <div class="block-product">
-                    <img width="292px" height="292px" src="{{product.Image}}" alt="{{product.title}}">
+                    <img width="292px" height="292px" src="{{product.Image.url}}" alt="{{product.title}}">
                     <div class="product-box">
 
                         <div class="product-desciption">
@@ -65,7 +65,7 @@
                                 <div class="wrap-out_stock">
                                     <div class="block-out-stock">
                                         <div class="danger-svg">
-                                            <img src="design/danger.svg" alt="">
+                                            <img src="{% static 'design/danger.svg' %}" alt="">
                                         </div>
                                         <div class="out_stock-text">
                                             <div class="danger-text">Out of stock</div>

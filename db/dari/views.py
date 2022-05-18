@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import FileResponse
 from django.contrib import messages
 import cx_Oracle
+from django.core.paginator import Paginator
+
 
 
 context = {}
@@ -47,6 +49,7 @@ def product(request, pk):
     return render(request, 'product/product.html', context)
 
 def register(request):
+    context['title'] = 'Create an account'
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -66,6 +69,7 @@ def register(request):
     return render(request, 'product/register.html', context)
 
 def login_(request):
+    context['title'] = 'Login'
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -98,7 +102,7 @@ def basket(request):
     if request.user:
         carts = Cart.objects.filter(user=request.user)
         context = {
-            'title': 'My carts',
+            'title': 'My cart',
             'carts': carts
         }
         return render(request, 'product/basket.html', context)
@@ -120,6 +124,7 @@ def profile(request):
     return render(request, 'product/profile.html', context)
 
 def edit_profile(request):
+
     if request.method == "POST":
         user_form = UpdateUserForm(request.POST, instance=request.user)
         if user_form.is_valid():
@@ -196,6 +201,13 @@ def delete_users(request):
 def delete_products(request):
     cx_Oracle.connect('DB', 'db').cursor().callproc("deactivate_products", [])
     return redirect('profile')
+
+# def add_product(request):
+#     if request.user.is_staff:
+#         if request.method == 'POST':
+#
+#     else:
+#         return redirect('home')
 
 
 # Create your views here.

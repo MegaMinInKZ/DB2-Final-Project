@@ -13,7 +13,7 @@
                     {% for product in products %}
                         <a class="product-link wrap-grid-item" href="{{product.get_absolute_url}}">
                             <div class="product__picture">
-                                <img width="100px" height="100px" src="{{product.Image}}" alt="abidec">
+                                <img width="100px" height="100px" src="{{product.Image.url}}" alt="abidec">
                             </div>
                             <div class="card-product-text">
                                 <div class="product__title">{{product.title}}</div>
