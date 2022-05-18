@@ -1,8 +1,6 @@
 import cx_Oracle
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-import requests
-from bs4 import BeautifulSoup
 from .models import *
 import random
 import csv
@@ -28,7 +26,12 @@ def index(request):
     return render(request, 'product/index.html', context)
 def category(request, slug):
     cat = Category.objects.get(slug=slug)
-    products = Product.objects.filter(category=cat)
+    all_list = Product.objects.filter(category=cat)
+    paginator = Paginator(all_list, 9)
+    if request.method == 'GET':
+        products = paginator.get_page(request.GET.get('page'))
+    else:
+        products = paginator.get_page(1)
     context = {
         'title': cat.name,
         'products': products,
@@ -201,6 +204,20 @@ def delete_users(request):
 def delete_products(request):
     cx_Oracle.connect('DB', 'db').cursor().callproc("deactivate_products", [])
     return redirect('profile')
+
+def add_product(request):
+    if not request.user.is_staff:
+        return redirect('home')
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            Product.objects.create(**form.cleaned_data).save()
+            return redirect('profile')
+    else:
+        form = AddProductForm()
+    context['title'] = 'Add a new Product'
+    context['form'] = form
+    return render(request, 'product/add_product.html', context)
 
 # def add_product(request):
 #     if request.user.is_staff:

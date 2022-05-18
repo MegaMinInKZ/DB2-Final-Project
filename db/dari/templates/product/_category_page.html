@@ -40,5 +40,24 @@
                 </div>
             </div>
         </div>
+        <div class="paginator-container">
+            {% if products.has_previous %}
+                <a class="page-number not-current-page" href="?page=1">&laquo;</a>
+                <a class="page-number not-current-page" href="?page={{ products.previous_page_number }}">&#8249;</a>
+            {% endif %}
+            
+            {% for i in products.paginator.page_range %}
+                {% if i == products.number %}
+                    <div class="current-page page-number">{{i}}</div>
+                {% else %}
+                    <a class="page-number not-current-page" href="?page={{ i }}">{{i}}</a>
+                {% endif %}
+            {% endfor %}
+            
+            {% if products.has_next %}
+                <a class="page-number not-current-page" href="?page={{ products.next_page_number }}">&#8250;</a>
+                <a class="page-number not-current-page" href="?page={{ products.paginator.num_pages }}">&raquo;</a>
+            {% endif %}
+        </div>
     </section>
 {%endblock%}

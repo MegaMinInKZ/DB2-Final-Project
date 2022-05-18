@@ -22,4 +22,5 @@ urlpatterns = [
     path('comment/', comment, name='comment'),
     path('delete-unvisited-users/', delete_users, name='delete-unvisited-users'),
     path('delete-unused-products/', delete_products, name='delete-unused-product'),
+    path('add-new-product/', add_product, name='add-new-product'),
 ]

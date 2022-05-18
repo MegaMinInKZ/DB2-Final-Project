@@ -127,3 +127,30 @@ a {
     line-height: 28px;
     
 }
+.paginator-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.page-number{
+    margin: 0px 5px;
+    text-align: center;
+    padding: 10px 12px;
+    font-family: 'Ubuntu';
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.not-current-page{
+    color: rgb(92, 92, 92);
+    transition: all linear .3s;
+    transition-property: background-color transform;
+}
+.not-current-page:hover{
+    transform: scale(1.05);
+    background-color: rgba(199, 199, 199, 0.582);
+}
+.current-page{
+    background-color: #128097;
+    color: white;
+}
