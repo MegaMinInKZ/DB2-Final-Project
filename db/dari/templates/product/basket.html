@@ -59,10 +59,10 @@
                                 <div class="product-manipulate">
                                     <div class="last-updated-date">{{cart.day}}</div>
                                     <div class="product-manipulate-buttons">
-                                        <button class="buy-btn basket-buttons" cart_id="{{cart.pk}}" onclick="openBuyPopUp(this)">Купить</button>
+                                        <button class="buy-btn basket-buttons" cart_id="{{cart.pk}}" onclick="openBuyPopUp(this)">Buy</button>
                                         <!-- <a href="" onclick="openDeletePopUP()" class="delete-btn basket-buttons">Удалить</a> -->
-                                        <button class="delete-btn basket-buttons" cart_id="{{cart.pk}}" onclick="openDeletePopUP(this)">Удалить</button>
-                                        <button class="checkout-btn basket-buttons" cart_id="{{cart.pk}}" amount="{{cart.product.amount}}" onclick="openCheckoutPopUp(this)">Изменить</button>
+                                        <button class="delete-btn basket-buttons" cart_id="{{cart.pk}}" onclick="openDeletePopUP(this)">Delete</button>
+                                        <button class="checkout-btn basket-buttons" cart_id="{{cart.pk}}" amount="{{cart.product.amount}}" onclick="openCheckoutPopUp(this)">Edit</button>
                                     </div>
                                 </div>
                             </div>
@@ -71,10 +71,10 @@
                 {% else %}
                     <div class="box-purchase">
                         <div class="no-purchase-title">
-                            У вас нет сохраненных в корзине
+                            You don't have any cart
                         </div>
                         <div class="no-purchase-subtitle">
-                            Если у вас есть сохраненные, они появятся здесь.
+                            If you will add to a cart, you can see it here
                         </div>
                     </div>
                 {% endif %}
@@ -86,14 +86,14 @@
     <div class="checkout-popup-bg">
         <div class="checkout-popup">
             <div class="checkout-popup-header">
-                <div class="checkout-question">Сколько вы хотите купить?</div>
+                <div class="checkout-question">How many do you want to buy?</div>
                 <div class="checkout-max-amount">Max: 12</div>
             </div>
             <form action="{% url 'update-cart' %}" method="post" enctype="multipart/form-data" class="checkout-form">
                 {% csrf_token %}
                 <input type="number" name="cart_id" id="cart_id_update" hidden>
                 <input type="number" min="1" name="amount" id="amount_input" required class="checkout-amount-input">
-                <button type="submit" class="checkout-submit-btn">Изменить</button>
+                <button type="submit" class="checkout-submit-btn">Change</button>
             </form>
         </div>
     </div>
@@ -125,11 +125,11 @@
         
         <div class="buy-popup">
             <div class="buy-popup__header">
-                <strong>Ваше мнение очень важно для нас!</strong>
+                <strong>Your opinion is very important for us!</strong>
             </div>
             <form action="{% url 'buy' %}" method="post" enctype="multipart/form-data" class="buy-form-feedback">
                 {% csrf_token %}
-                <div class="rating__header">Как вы оцените наш продукт?</div>
+                <div class="rating__header">Please, give some feedback to improve our online pharmacy</div>
                 <div class="rating">
                 <input type="radio" name="rating" required id="rating-5" value="5">
                 <label for="rating-5"></label>
@@ -231,9 +231,9 @@
                 </div>
 
                 <!-- <input type="texarea" name="feedback" id="" class="feedback-input"> -->
-                <textarea name="feedback" id="" required placeholder="Как нам улучшить наш сервис?" class="feedback-input" cols="30" rows="10"></textarea>
+                <textarea name="feedback" id="" required placeholder="How can we imporve our service?" class="feedback-input" cols="30" rows="10"></textarea>
                 <input type="number" name="cart_id" id="cart_id_buy" hidden>
-                <button class="buy-submit-btn" type="submit">Оставить отзыв</button>
+                <button class="buy-submit-btn" type="submit">Give feedback</button>
             </form>
         </div>
     </div>

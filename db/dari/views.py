@@ -67,8 +67,9 @@ def register(request):
             context['last_name'] = request.POST.get('last_name')
             context['username'] = request.POST.get('username')
             context['email'] = request.POST.get('email')
-            context['error'] = True
-
+    else:
+        form = RegisterForm()
+    context['form'] = form
     return render(request, 'product/register.html', context)
 
 def login_(request):
@@ -210,9 +211,15 @@ def add_product(request):
         return redirect('home')
     if request.method == 'POST':
         form = AddProductForm(request.POST, request.FILES)
+        context['Image'] = request.FILES.get('Image')
+        context['title'] = request.POST.get('title')
+        context['category_id'] = request.POST.get('category')
+        context['category_name'] = Category.objects.get(pk=context['category_id'])
         if form.is_valid():
             Product.objects.create(**form.cleaned_data).save()
             return redirect('profile')
+        else:
+            messages.error(request, form.errors)
     else:
         form = AddProductForm()
     context['title'] = 'Add a new Product'

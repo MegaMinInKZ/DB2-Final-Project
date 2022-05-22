@@ -1,29 +1,28 @@
 {% extends 'product/base.html' %}
-{% block content%}
-<form action="{% url 'add-new-product' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-        <div class="form_attribute_container full">
-            <span>Title*</span>
-            <input type="text" name="title" maxlength="255" required id="id_title">
+{% load static %}
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/add_product.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper-login">
+        <div class="wrap-login">
+            <div class="block-login">
+                <div class="login-card-graphics">
+                    <img width="288px" height="261px" src="{% static 'images/consultation-start.svg' %}" alt="">
+                </div>
+                <div class="login-card-content">
+                    <form action="{% url 'add-new-product' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button type="submit">Add</button>
+                    </form>
+                    <div class="wrap-link"><a href="{% url 'profile' %}" class="link-text">Cancel</a></div>
+                </div>
+            </div>
         </div>
-        <div class="form_attribute_container half">
-            <span>Price*</span>
-            <input type="number" name="price" required id="id_price">
-        </div>
-        <div class="form_attribute_container half">
-            <span>amount*</span>
-            <input type="number" name="amount" required id="id_amount">
-        </div>
-        
-        <div class="form_attribute_container half">
-            <span>City*</span>
-            {{form.category}}
-        </div>
-        <div class="form_attribute_container half">
-            <span>Image*</span>
-            <label for="id_main_image">Choose Image</label>
-            <input type="file" name="Image" accept="image/*" required id="id_main_image">
-        </div>
-    <button type="submit">Add</button>
-</form>
+    </div>
+
+    
+
 {% endblock %}

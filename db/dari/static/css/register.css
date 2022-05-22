@@ -95,3 +95,7 @@ button {
 .register-submit-btn:hover {
     transform: scale(1.05);
 }
+.error-message{
+    color: red;
+    font-family: 'Ubuntu';
+}

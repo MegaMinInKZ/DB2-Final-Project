@@ -30,21 +30,34 @@ class UpdateUserForm(forms.ModelForm):
         model = User
         fields = ['email', 'first_name', 'last_name']
 
-def validate_image(image):
-    # filesize = image.file.size
-    width, height = get_image_dimensions(image.file)
-    # if filesize > 2 * 1024 * 1024:
-    #     raise forms.ValidationError(_("Image size cannot be more than 2 MB"), params={'value': image})
-    if width > 1000 or height > 1000 or height < 100 or width < 100:
-        raise forms.ValidationError("Image's height, width should be less than 1000px and more than 100px", params={'value': image})
-    return image
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('title', 'category', 'price', 'amount', 'Image')
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'full-width',
+                                            'required': True,}),
+            'category': forms.Select(attrs={'class': 'full-width',
+                                            'required': True}),
+            'price': forms.NumberInput(attrs={'class': 'full-width',
+                                              'required': True}),
+            'amount': forms.NumberInput(attrs={'class': 'full-width',
+                                              'required': True}),
+            'Image': forms.ClearableFileInput(attrs={'class': 'full-width',
+                                               'required': True})
+        }
+    def __init__(self, *args, **kwargs ):
+        super().__init__(*args, **kwargs)
+        self.fields['category'].empty_label = "Category isn't chosen"
 
-class AddProductForm(forms.Form):
-    title = forms.CharField(max_length=255)
-    price = forms.IntegerField(validators=[MinValueValidator(0)])
-    amount = forms.IntegerField(validators=[MinValueValidator(0)])
-    Image = forms.ImageField(validators=[validate_image])
-    category = forms.ModelChoiceField(queryset=Category.objects.all())
+    def clean_Image(self):
+        image = self.cleaned_data['Image']
+        width, height = get_image_dimensions(image.file)
+        if width > 1000 or height > 1000 or height < 100 or width < 100:
+            raise forms.ValidationError("Image height, width should be less than 1000px and more than 100px")
+        if image.size > 0.5 * 1024 * 1024:
+            raise forms.ValidationError("Image size should be less than 2MB")
+        return image
 
 
 
